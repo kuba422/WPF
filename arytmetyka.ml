@@ -1,3 +1,7 @@
+(* autor: Jakub Jagiella *)
+(* projekt: Arytmetyka   *)
+
+
 (* funkcje pomocnicze *)
 
 let modul (x : float) =
@@ -60,7 +64,8 @@ let max_wartosc (w : wartosc) =
 
 
 let sr_wartosc (w : wartosc) = 
-  let min = min_wartosc w and max = max_wartosc w 
+  let min = min_wartosc w 
+  and max = max_wartosc w 
   in
   if (min = neg_infinity && max = infinity) then
     nan
@@ -83,7 +88,7 @@ in
   else
     ((neg_infinity, infinity, true, true) : wartosc)
 
-
+(* {a : -a \in w} *)
 let wartosc_przeciwna (w : wartosc) =
   (((-1.) *. (drugi w), (-1.) *. (pierwszy w), przedzial w, liczba w) : wartosc)
 
@@ -94,7 +99,8 @@ let razy_pomocnicza_1 (w1 : wartosc) (w2 : wartosc) =
   and b' = (pierwszy w1) *. (drugi w2)
   and c' = (drugi w1) *. (pierwszy w2)
   and d' = (drugi w1) *. (drugi w2)
-  in
+  in  
+  (* przyjmujemy, ze infinity * 0 = 0 *)
   let a = if (classify_float a') = FP_nan then 0. else a'
   and b = if (classify_float b') = FP_nan then 0. else b'
   and c = if (classify_float c') = FP_nan then 0. else c'
@@ -136,7 +142,7 @@ let razy_pomocnicza_3 (w1 : wartosc) (w2 : wartosc) =
   else
     ((neg_infinity, infinity, true, true) : wartosc)
 
-
+(* {1 / a : a \in w}                    *)
 (* zakladamy, ze w jest rozne od [0, 0] *)
 let wartosc_odwrotna (w : wartosc) = 
   if (przedzial w && not (in_wartosc w 0.)) then
@@ -180,7 +186,8 @@ let minus (w1 : wartosc) (w2 : wartosc) =
 let razy (w1 : wartosc) (w2 : wartosc) = 
   if (not (liczba w1) || not (liczba w2)) then
     ((0., 0., true, false) : wartosc)
-  else if (przedzial w1 && przedzial w2) then
+  
+    else if (przedzial w1 && przedzial w2) then
     razy_pomocnicza_1 w1 w2
   else if (przedzial w1) then
     razy_pomocnicza_2 w1 w2
@@ -197,5 +204,7 @@ let podzielic (w1 : wartosc) (w2 : wartosc) =
     razy w1 (wartosc_odwrotna w2)
 
 
+
+  
 
   
