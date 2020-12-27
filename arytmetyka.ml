@@ -1,5 +1,6 @@
-(* autor: Jakub Jagiella *)
-(* projekt: Arytmetyka   *)
+(* autor:     Jakub Jagiella *)
+(* recenzent: Antoni Puch    *)
+(* projekt:   Arytmetyka     *)
 
 
 (* funkcje pomocnicze *)
@@ -9,7 +10,7 @@ let modul (x : float) =
 
 
 (* wartosc a b true  true  = [a, b] (a, b nie muszą być skonczone) *)
-(* wartosc a b false true  = (neg_infinity, a] u [b, infinity])    *)
+(* wartosc a b false true  = (neg_infinity, a] u [b, infinity)     *)
 (* wartosc _ _ _____ false = nan                                   *)
 
 type wartosc = float * float * bool * bool
@@ -18,6 +19,10 @@ let pierwszy  ((x, _, _, _) : wartosc) = x
 let drugi     ((_, x, _, _) : wartosc) = x
 let przedzial ((_, _, x, _) : wartosc) = x
 let liczba    ((_, _, _, x) : wartosc) = x
+
+(* nomenklatura:                                        *)
+(* przedzial w = true - w jest przedzialem              *)
+(* przedzial w = false - w jest dopelnieniem przedzialu *)
 
 
 (* konstruktory *)
@@ -83,8 +88,8 @@ let plus_pomocnicza (w1 : wartosc) (w2 : wartosc) =
   and x = pierwszy w2
   and y = drugi w2
 in
-  if (max (x +. a) (x +. b)  < min (y +.a) (y +. b)) then
-    ((max (x +. a) (x +. b), min (y +.a) (y +. b), false, true) : wartosc)
+  if ((x +. b) < (y +. a)) then
+    ((x +. b, y +. a, false, true) : wartosc)
   else
     ((neg_infinity, infinity, true, true) : wartosc)
 
@@ -186,8 +191,7 @@ let minus (w1 : wartosc) (w2 : wartosc) =
 let razy (w1 : wartosc) (w2 : wartosc) = 
   if (not (liczba w1) || not (liczba w2)) then
     ((0., 0., true, false) : wartosc)
-  
-    else if (przedzial w1 && przedzial w2) then
+  else if (przedzial w1 && przedzial w2) then
     razy_pomocnicza_1 w1 w2
   else if (przedzial w1) then
     razy_pomocnicza_2 w1 w2
@@ -204,7 +208,5 @@ let podzielic (w1 : wartosc) (w2 : wartosc) =
     razy w1 (wartosc_odwrotna w2)
 
 
-
-  
 
   
