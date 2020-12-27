@@ -1,5 +1,6 @@
-(* autor:   Jakub Jagiella  *)
-(* projekt: Drzewa lewicowe *)
+(* projekt:   Drzewa lewicowe *)
+(* autor:     Jakub Jagiełła  *)
+(* recenzent: Anna Pawłowska  *)
 
 (* priorytet, prawa wysokosc, lewe poddrzewo, prawe poddrzewo *)
 type 'a queue = 
@@ -11,7 +12,6 @@ let height (q : 'a queue) =
   match q with
   | Null -> 0
   | Node(_, h, _, _) -> h
-
 
 let empty = Null
 
@@ -40,9 +40,7 @@ let rec join (q1 : 'a queue) (q2 : 'a queue) =
         Node(p1, height q3 + 1, l1, q3)
 
 let add (element : 'a) (q : 'a queue) = 
-  let q_element = Node(element, 0, Null, Null)
-  in
-  join q q_element
+  join q (Node(element, 0, Null, Null))
 
 let delete_min (q : 'a queue) =
   match q with 
