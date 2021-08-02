@@ -1,8 +1,3 @@
-(* autor:     Jakub Jagiella *)
-(* recenzent: Antoni Puch    *)
-(* projekt:   Arytmetyka     *)
-
-
 (* funkcje pomocnicze *)
 
 let modul (x : float) =
@@ -206,7 +201,3 @@ let podzielic (w1 : wartosc) (w2 : wartosc) =
     ((0., 0., true, false) : wartosc)
   else
     razy w1 (wartosc_odwrotna w2)
-
-
-
-  
