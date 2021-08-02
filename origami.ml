@@ -1,8 +1,3 @@
-(* Projekt: Origami                                               *)
-(* Autor: Jakub Jagiella                                          *)
-(* Recenzent: Jan Wojtach (grupa 3)                               *)
-(* Rozwiazanie bylo testowane na testach z tego repozytorium:     *)
-(* https://gitlab.com/MIMUW-wpf/testy-origami/-/tree/master/tests *)
 type point = float * float
 
 type kartka = point -> int
