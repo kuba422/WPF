@@ -1,7 +1,3 @@
-(* Projekt: Modyfikacja_Drzew *)
-(* Autor: Jakub Jagiella      *)
-(* Recenzent: Olaf Placha     *)
-
 (* typ reprezentujacy przedzial            *)
 (* ((x, y) : interval) reprezentuje [x, y] *)
 type interval = int * int
