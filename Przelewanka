@@ -1,9 +1,3 @@
-(* Zadanie:   Przelewanka     *)
-(* Autor:     Jakub Jagiella  *)
-(* Recenzent: Maria Nazarczuk *)
-
-(* Testy: https://gitlab.com/MIMUW-wpf/testy-przelewanka/-/tree/master/tests *)
-
 let przelewanka (a : (int * int) array) = 
   let n = Array.length a
   (* [Hashtbl.find stany s] reprezentuje minimalna liczbe operacji potrzebna do otrzymania stanu s ze stanu poczatkowego *)
